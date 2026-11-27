@@ -28,42 +28,25 @@ a{color:#7A5C14}a:hover{color:#5C4610}
 <main style="max-width: 1160px; margin: 0 auto; padding: 40px 24px 80px">
 <div class="co-cols" style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 32px; align-items: start">
 
-<form style="display: flex; flex-direction: column; gap: 20px" onsubmit="return false">
-<section style="background: #FFFFFF; border: 1px solid #E5E1D8; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Contact</h2><label for="co-email" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">Email<input id="co-email" type="email" placeholder="you@example.com" autocomplete="email" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label>
-<label style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #4A5560"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #14202B">Email me product news and offers</label></section>
-
-<section style="background: #FFFFFF; border: 1px solid #E5E1D8; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Shipping address</h2>
-<div class="grid2"><label for="co-first" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">First name<input id="co-first" type="text" placeholder="" autocomplete="given-name" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label><label for="co-last" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">Last name<input id="co-last" type="text" placeholder="" autocomplete="family-name" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label></div>
-<label for="co-addr" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">Address<input id="co-addr" type="text" placeholder="Street address" autocomplete="address-line1" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label>
-<label for="co-addr2" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">Apartment, suite, etc. (optional)<input id="co-addr2" type="text" placeholder="" autocomplete="address-line2" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label>
-<div class="grid2"><label for="co-city" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">City<input id="co-city" type="text" placeholder="" autocomplete="address-level2" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label><label for="co-state" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">State / Region<input id="co-state" type="text" placeholder="" autocomplete="address-level1" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label></div>
-<div class="grid2"><label for="co-zip" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">ZIP / Postal code<input id="co-zip" type="text" placeholder="" autocomplete="postal-code" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label>
-<label for="co-country" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">Country<select id="co-country" autocomplete="country" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"><option>United States</option><option>Canada</option><option>United Kingdom</option><option>Other country</option></select></label></div>
-<label for="co-phone" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">Phone (for delivery updates)<input id="co-phone" type="tel" placeholder="" autocomplete="tel" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label></section>
-
+<form id="co-form" style="display: flex; flex-direction: column; gap: 20px" onsubmit="return false">
 <section style="background: #FFFFFF; border: 1px solid #E5E1D8; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Shipping method</h2>
 <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px"><legend style="position: absolute; left: -9999px">Shipping method</legend>
 <label style="display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 2px solid #14202B; border-radius: 14px; padding: 16px 18px; cursor: pointer"><span style="display: flex; align-items: center; gap: 12px"><input type="radio" name="ship" value="std" checked style="width: 20px; height: 20px; accent-color: #14202B"><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">Standard shipping</strong><span style="font-size: 14px; color: #5B6770">1–2 business days, United States</span></span></span><strong style="font-size: 16px">$5.00</strong></label>
 <label style="display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid #CFCBC2; border-radius: 14px; padding: 16px 18px; cursor: pointer"><span style="display: flex; align-items: center; gap: 12px"><input type="radio" name="ship" value="intl" style="width: 20px; height: 20px; accent-color: #14202B"><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">International shipping</strong><span style="font-size: 14px; color: #5B6770">4–7 business days, worldwide</span></span></span><strong style="font-size: 16px">$30.00</strong></label>
 </fieldset></section>
 
-<section style="background: #FFFFFF; border: 1px solid #E5E1D8; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Payment</h2>
-<p style="margin: 0; font-size: 14px; color: #5B6770; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14202B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>All transactions are secure and encrypted.</p>
-<label for="co-card" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">Card number<input id="co-card" type="text" placeholder="1234 5678 9012 3456" autocomplete="cc-number" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label>
-<div class="grid2"><label for="co-exp" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">Expiration (MM / YY)<input id="co-exp" type="text" placeholder="MM / YY" autocomplete="cc-exp" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label><label for="co-cvc" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">Security code<input id="co-cvc" type="text" placeholder="CVC" autocomplete="cc-csc" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label></div>
-<label for="co-name" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #3A4550">Name on card<input id="co-name" type="text" placeholder="" autocomplete="cc-name" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"></label>
-<label style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #4A5560"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #14202B">Billing address same as shipping</label></section>
+<section style="background: #FFFFFF; border: 1px solid #E5E1D8; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Payment</h2><p style="margin: 0; font-size: 14px; color: #5B6770; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14202B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Payments are processed securely by Stripe.</p><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4A5560">When you place your order you’ll go to Stripe’s secure checkout page to enter your email, shipping address and card details. Have a discount code? You can add it there.</p></section>
 </form>
 
 <aside class="co-summary" aria-label="Order summary" style="position: sticky; top: 24px; background: #FFFFFF; border: 1px solid #E5E1D8; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
 <h2 style="margin: 0; font-size: 22px; font-weight: 700">Order summary</h2>
-<div style="display: flex; align-items: center; gap: 16px"><div style="width: 72px; height: 72px; flex: none; background: #F3F2EF; border-radius: 14px; display: flex; align-items: center; justify-content: center"><img src="/images/posterity-bottle.png" alt="" style="height: 60px; width: auto"></div><div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 16px">Posterity</strong><span style="font-size: 13px; color: #5B6770">90 capsules · Fertility support</span><div style="display: flex; align-items: center; gap: 0; border: 1px solid #CFCBC2; border-radius: 999px; width: fit-content"><button type="button" aria-label="Decrease Posterity quantity" style="border: 0; background: transparent; width: 36px; height: 36px; font-size: 18px; cursor: pointer">−</button><span style="min-width: 20px; text-align: center; font-weight: 700">1</span><button type="button" aria-label="Increase Posterity quantity" style="border: 0; background: transparent; width: 36px; height: 36px; font-size: 18px; cursor: pointer">+</button></div></div><strong style="font-size: 16px">$39.99</strong></div>
-<div style="display: flex; align-items: center; gap: 16px"><div style="width: 72px; height: 72px; flex: none; background: #F3F2EF; border-radius: 14px; display: flex; align-items: center; justify-content: center"><img src="/images/epimens-bottle.png" alt="" style="height: 60px; width: auto"></div><div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 16px">Epimens</strong><span style="font-size: 13px; color: #5B6770">60 capsules · Sexual vitality</span><div style="display: flex; align-items: center; gap: 0; border: 1px solid #CFCBC2; border-radius: 999px; width: fit-content"><button type="button" aria-label="Decrease Epimens quantity" style="border: 0; background: transparent; width: 36px; height: 36px; font-size: 18px; cursor: pointer">−</button><span style="min-width: 20px; text-align: center; font-weight: 700">1</span><button type="button" aria-label="Increase Epimens quantity" style="border: 0; background: transparent; width: 36px; height: 36px; font-size: 18px; cursor: pointer">+</button></div></div><strong style="font-size: 16px">$39.99</strong></div>
-<div style="display: flex; gap: 8px"><label for="co-code" style="position: absolute; left: -9999px">Discount code</label><input id="co-code" type="text" placeholder="Discount code" style="width: 100%; box-sizing: border-box; border: 1px solid #CFCBC2; border-radius: 12px; padding: 14px 16px; font: 16px Lato, Inter, sans-serif; color: #14202B; background: #FFFFFF"><button type="button" style="border: 0; background: #E8E7E3; color: #14202B; font: 700 15px Lato, sans-serif; padding: 0 20px; border-radius: 12px; cursor: pointer">Apply</button></div>
+<div style="display: flex; align-items: center; gap: 16px"><div style="width: 72px; height: 72px; flex: none; background: #F3F2EF; border-radius: 14px; display: flex; align-items: center; justify-content: center"><img src="/images/posterity-bottle.png" alt="" style="height: 60px; width: auto"></div><div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 16px">Posterity</strong><span style="font-size: 13px; color: #5B6770">90 capsules · Fertility support</span><div style="display: flex; align-items: center; gap: 0; border: 1px solid #CFCBC2; border-radius: 999px; width: fit-content"><button type="button" aria-label="Decrease Posterity quantity" data-dec="posterity" style="border: 0; background: transparent; width: 36px; height: 36px; font-size: 18px; cursor: pointer">−</button><span style="min-width: 20px; text-align: center; font-weight: 700" data-qty="posterity" aria-live="polite">1</span><button type="button" aria-label="Increase Posterity quantity" data-inc="posterity" style="border: 0; background: transparent; width: 36px; height: 36px; font-size: 18px; cursor: pointer">+</button></div></div><strong style="font-size: 16px" data-line="posterity">$39.99</strong></div>
+<div style="display: flex; align-items: center; gap: 16px"><div style="width: 72px; height: 72px; flex: none; background: #F3F2EF; border-radius: 14px; display: flex; align-items: center; justify-content: center"><img src="/images/epimens-bottle.png" alt="" style="height: 60px; width: auto"></div><div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 16px">Epimens</strong><span style="font-size: 13px; color: #5B6770">60 capsules · Sexual vitality</span><div style="display: flex; align-items: center; gap: 0; border: 1px solid #CFCBC2; border-radius: 999px; width: fit-content"><button type="button" aria-label="Decrease Epimens quantity" data-dec="epimens" style="border: 0; background: transparent; width: 36px; height: 36px; font-size: 18px; cursor: pointer">−</button><span style="min-width: 20px; text-align: center; font-weight: 700" data-qty="epimens" aria-live="polite">1</span><button type="button" aria-label="Increase Epimens quantity" data-inc="epimens" style="border: 0; background: transparent; width: 36px; height: 36px; font-size: 18px; cursor: pointer">+</button></div></div><strong style="font-size: 16px" data-line="epimens">$39.99</strong></div>
 <div style="border-top: 1px solid #E5E1D8; padding-top: 16px; display: flex; flex-direction: column; gap: 10px">
-<div style="display: flex; justify-content: space-between; font-size: 15px; color: #4A5560"><span>Subtotal</span><span>$79.98</span></div><div style="display: flex; justify-content: space-between; font-size: 15px; color: #4A5560"><span>Shipping</span><span>$5.00</span></div><div style="display: flex; justify-content: space-between; font-size: 15px; color: #4A5560"><span>Estimated tax</span><span>Calculated at payment</span></div></div>
-<div style="border-top: 1px solid #E5E1D8; padding-top: 16px"><div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: #14202B"><span>Total</span><span>$84.98</span></div></div>
-<button type="button" style="border: 0; background: #111111; color: #FFFFFF; font: 700 18px Lato, sans-serif; padding: 18px 24px; border-radius: 999px; cursor: pointer; box-shadow: 0 8px 20px rgba(20,20,20,0.15)">Place order</button>
+<div style="display: flex; justify-content: space-between; font-size: 15px; color: #4A5560"><span>Subtotal</span><span id="co-subtotal">$79.98</span></div><div style="display: flex; justify-content: space-between; font-size: 15px; color: #4A5560"><span>Shipping</span><span id="co-shipping">$5.00</span></div><div style="display: flex; justify-content: space-between; font-size: 15px; color: #4A5560"><span>Estimated tax</span><span>Calculated at payment</span></div></div>
+<div style="border-top: 1px solid #E5E1D8; padding-top: 16px"><div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: #14202B"><span>Total</span><span id="co-total">$84.98</span></div></div>
+<button type="button" id="co-place" style="border: 0; background: #111111; color: #FFFFFF; font: 700 18px Lato, sans-serif; padding: 18px 24px; border-radius: 999px; cursor: pointer; box-shadow: 0 8px 20px rgba(20,20,20,0.15)">Place order</button>
+<p id="co-error" role="alert" style="margin: 0; font-size: 14px; color: #A3261B; text-align: center" hidden></p>
 <p style="margin: 0; font-size: 12px; line-height: 1.5; color: #5B6770; text-align: center">By placing your order you agree to our <a href="/terms">Terms</a> and <a href="/terms#disclaimer">Disclaimer</a>.</p>
 <div style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid #E5E1D8; padding-top: 16px"><span style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14202B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.5 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1 2-2.5 2c-1 0-2-.5-2.5-1.5"></path><path d="M12 6.5v1.5M12 16v1.5"></path></svg>Money-back guarantee</span><span style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14202B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"></path><path d="M5 4h13l-2.5 4L18 12H5"></path></svg>Made in USA</span><span style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14202B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"></path><rect x="3" y="13" width="4" height="6" rx="1.5"></rect><rect x="17" y="13" width="4" height="6" rx="1.5"></rect></svg>Personalized support</span></div>
 </aside>
@@ -78,5 +61,75 @@ a{color:#7A5C14}a:hover{color:#5C4610}
 </div>
 </footer>
 </div>
+<script>
+(function () {
+  var PRICE = 39.99, SHIP = { std: 5, intl: 30 }, MAX = 10;
+  var qty = { posterity: 1, epimens: 1 };
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.get("product") === "posterity") qty = { posterity: 1, epimens: 0 };
+    if (q.get("product") === "epimens") qty = { posterity: 0, epimens: 1 };
+  } catch (e) {}
+  var $ = function (sel) { return document.querySelector(sel); };
+  var money = function (n) { return "$" + n.toFixed(2); };
+  var shipping = function () { var r = $('input[name="ship"]:checked'); return r ? r.value : "std"; };
+
+  function render() {
+    var sub = 0;
+    Object.keys(qty).forEach(function (k) {
+      $('[data-qty="' + k + '"]').textContent = qty[k];
+      $('[data-line="' + k + '"]').textContent = money(PRICE * qty[k]);
+      $('[data-dec="' + k + '"]').disabled = qty[k] === 0;
+      $('[data-inc="' + k + '"]').disabled = qty[k] >= MAX;
+      sub += PRICE * qty[k];
+    });
+    var ship = sub > 0 ? SHIP[shipping()] : 0;
+    $("#co-subtotal").textContent = money(sub);
+    $("#co-shipping").textContent = money(ship);
+    $("#co-total").textContent = money(sub + ship);
+    $("#co-place").disabled = sub === 0;
+    $("#co-place").style.opacity = sub === 0 ? "0.5" : "1";
+    document.querySelectorAll('input[name="ship"]').forEach(function (r) {
+      r.closest("label").style.border = r.checked ? "2px solid #14202B" : "1px solid #CFCBC2";
+    });
+  }
+
+  document.querySelectorAll("[data-inc],[data-dec]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var k = b.dataset.inc || b.dataset.dec;
+      qty[k] = Math.max(0, Math.min(MAX, qty[k] + (b.dataset.inc ? 1 : -1)));
+      render();
+    });
+  });
+  document.querySelectorAll('input[name="ship"]').forEach(function (r) {
+    r.addEventListener("change", render);
+  });
+
+  var btn = $("#co-place"), err = $("#co-error");
+  btn.addEventListener("click", function () {
+    err.hidden = true;
+    btn.disabled = true;
+    btn.textContent = "Redirecting to secure checkout…";
+    fetch("/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ posterity: qty.posterity, epimens: qty.epimens, shipping: shipping() })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.d.url) { location.href = res.d.url; return; }
+        throw new Error(res.d.error || "Something went wrong.");
+      })
+      .catch(function (e) {
+        err.textContent = e.message && e.message !== "Failed to fetch" ? e.message : "We couldn't start checkout. Please try again.";
+        err.hidden = false;
+        btn.disabled = false;
+        btn.textContent = "Place order";
+      });
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>
