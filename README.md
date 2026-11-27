@@ -60,4 +60,18 @@ Railway → service → **Variables**:
 
 Without `STRIPE_SECRET_KEY`, the checkout shows "Payments aren't set up yet."
 
+## Order emails (Resend)
+
+When a payment succeeds, Stripe calls `/api/stripe-webhook`, and the site emails an order confirmation to the customer and a "new order" alert to you through Resend (`lib/order-emails.js`).
+
+| Variable | Value |
+| --- | --- |
+| `STRIPE_WEBHOOK_SECRET` | Signing secret (`whsec_…`) of the Stripe webhook pointing at `https://YOUR-SITE/api/stripe-webhook`, listening for `checkout.session.completed` and `checkout.session.async_payment_succeeded`. |
+| `RESEND_API_KEY` | Resend API key (`re_…`), "Sending access". |
+| `ORDER_NOTIFY_EMAIL` | Where new-order alerts go (your email). Also used as the reply-to address. |
+| `EMAIL_FROM` | Sender, e.g. `AuraVitae <orders@auravitaenutritions.com>`. Needs that domain verified in Resend. Until then the default `onboarding@resend.dev` only delivers to your own Resend account email. |
+| `EMAIL_REPLY_TO` | Optional. Reply-to address if different from `ORDER_NOTIFY_EMAIL`. |
+
+`/api/status` shows whether payments, the webhook and emails are switched on (never the keys).
+
 Orders appear in the Stripe dashboard under **Payments**. Discount codes are created in Stripe under **Products → Coupons**.

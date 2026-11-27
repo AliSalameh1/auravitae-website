@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const Stripe = require("stripe");
+const { sendOrderEmails, emailStatus } = require("./lib/order-emails");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -44,6 +45,45 @@ const SHIPPING = {
 
 const MAX_QTY = 10;
 
+// Stripe calls this after a payment goes through. It must read the raw body
+// (before express.json) so the signature can be checked.
+const WEBHOOK_SECRET = (process.env.STRIPE_WEBHOOK_SECRET || "").trim();
+app.post(
+  "/api/stripe-webhook",
+  express.raw({ type: "application/json", limit: "1mb" }),
+  async (req, res) => {
+    if (!stripe || !WEBHOOK_SECRET) {
+      return res.status(503).send("Webhook not configured");
+    }
+    let event;
+    try {
+      event = stripe.webhooks.constructEvent(
+        req.body,
+        req.headers["stripe-signature"],
+        WEBHOOK_SECRET
+      );
+    } catch (err) {
+      console.error("Webhook signature check failed:", err.message);
+      return res.status(400).send("Bad signature");
+    }
+    const session = event.data.object;
+    const paid =
+      (event.type === "checkout.session.completed" && session.payment_status === "paid") ||
+      event.type === "checkout.session.async_payment_succeeded";
+    if (paid) {
+      try {
+        await sendOrderEmails(session, PRODUCTS);
+        console.log("Order emails sent for", session.id);
+      } catch (err) {
+        console.error("Order emails failed for", session.id, "-", err.message);
+        // A failure makes Stripe retry later; emails already sent aren't repeated.
+        return res.status(500).send("Email failed");
+      }
+    }
+    res.json({ received: true });
+  }
+);
+
 app.use(express.json({ limit: "10kb" }));
 
 // Quick check that payments are switched on. Never shows the key itself.
@@ -59,6 +99,8 @@ app.get("/api/status", (req, res) => {
       : /^(sk|rk)_live_/.test(key)
       ? "live"
       : "unrecognized (check for extra spaces or quotes)",
+    webhook: Boolean(WEBHOOK_SECRET),
+    emails: emailStatus(),
     commit: (process.env.RAILWAY_GIT_COMMIT_SHA || "").slice(0, 7) || null,
   });
 });
@@ -134,6 +176,10 @@ app.post("/api/checkout", async (req, res) => {
         },
       ],
       phone_number_collection: { enabled: true },
+      metadata: {
+        posterity: String(quantities.posterity),
+        epimens: String(quantities.epimens),
+      },
       allow_promotion_codes: true,
       // Turn on once Stripe Tax is set up in the Stripe dashboard.
       automatic_tax: { enabled: process.env.STRIPE_AUTOMATIC_TAX === "true" },
