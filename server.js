@@ -7,9 +7,8 @@ const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = path.join(__dirname, "public");
 
 // Stripe is only switched on when STRIPE_SECRET_KEY is set (Railway → Variables).
-const stripe = process.env.STRIPE_SECRET_KEY
-  ? new Stripe(process.env.STRIPE_SECRET_KEY)
-  : null;
+const STRIPE_KEY = (process.env.STRIPE_SECRET_KEY || "").trim();
+const stripe = STRIPE_KEY ? new Stripe(STRIPE_KEY) : null;
 
 // Prices live here on the server so a customer can't change them in the browser.
 // Amounts are in cents.
@@ -46,6 +45,23 @@ const SHIPPING = {
 const MAX_QTY = 10;
 
 app.use(express.json({ limit: "10kb" }));
+
+// Quick check that payments are switched on. Never shows the key itself.
+app.get("/api/status", (req, res) => {
+  const key = (process.env.STRIPE_SECRET_KEY || "").trim();
+  res.set("Cache-Control", "no-store");
+  res.json({
+    payments: Boolean(stripe),
+    keyType: !key
+      ? "missing"
+      : /^(sk|rk)_test_/.test(key)
+      ? "test"
+      : /^(sk|rk)_live_/.test(key)
+      ? "live"
+      : "unrecognized (check for extra spaces or quotes)",
+    commit: (process.env.RAILWAY_GIT_COMMIT_SHA || "").slice(0, 7) || null,
+  });
+});
 
 app.post("/api/checkout", async (req, res) => {
   if (!stripe) {
