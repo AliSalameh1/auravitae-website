@@ -132,6 +132,13 @@ app.use(
   express.static(PUBLIC_DIR, {
     extensions: ["html"],
     maxAge: "1h",
+    // Pages always re-check with the server so updates show right away;
+    // images can still be cached for an hour.
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith(".html")) {
+        res.setHeader("Cache-Control", "no-cache");
+      }
+    },
   })
 );
 
