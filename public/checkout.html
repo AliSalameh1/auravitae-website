@@ -29,11 +29,7 @@ a{color:#7A5C14}a:hover{color:#5C4610}
 <div class="co-cols" style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 32px; align-items: start">
 
 <form id="co-form" style="display: flex; flex-direction: column; gap: 20px" onsubmit="return false">
-<section style="background: #FFFFFF; border: 1px solid #E5E1D8; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Shipping method</h2>
-<fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px"><legend style="position: absolute; left: -9999px">Shipping method</legend>
-<label style="display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 2px solid #14202B; border-radius: 14px; padding: 16px 18px; cursor: pointer"><span style="display: flex; align-items: center; gap: 12px"><input type="radio" name="ship" value="std" checked style="width: 20px; height: 20px; accent-color: #14202B"><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">Standard shipping</strong><span style="font-size: 14px; color: #5B6770">1–2 business days, United States</span></span></span><strong style="font-size: 16px">$5.00</strong></label>
-<label style="display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid #CFCBC2; border-radius: 14px; padding: 16px 18px; cursor: pointer"><span style="display: flex; align-items: center; gap: 12px"><input type="radio" name="ship" value="intl" style="width: 20px; height: 20px; accent-color: #14202B"><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">International shipping</strong><span style="font-size: 14px; color: #5B6770">4–7 business days, worldwide</span></span></span><strong style="font-size: 16px">$30.00</strong></label>
-</fieldset></section>
+<section style="background: #FFFFFF; border: 1px solid #E5E1D8; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Shipping</h2><label for="co-country" style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700; color: #14202B">Ship to<select id="co-country" autocomplete="country" style="font: 400 16px Lato, sans-serif; color: #14202B; padding: 14px 16px; border: 1px solid #CFCBC2; border-radius: 12px; background: #FFFFFF"><option value="US">United States</option></select></label><div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 2px solid #14202B; border-radius: 14px; padding: 16px 18px"><span style="display: flex; flex-direction: column; gap: 2px"><strong id="co-ship-name" style="font-size: 16px">Standard shipping</strong><span id="co-ship-time" style="font-size: 14px; color: #5B6770">1–2 business days</span></span><strong id="co-ship-price" style="font-size: 16px">$5.00</strong></div><p style="margin: 0; font-size: 13px; color: #5B6770">US orders: $5.00, 1–2 business days. International orders: $30.00, 4–7 business days. You’ll enter your full address on the next page.</p></section>
 
 <section style="background: #FFFFFF; border: 1px solid #E5E1D8; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Payment</h2><p style="margin: 0; font-size: 14px; color: #5B6770; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14202B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Payments are processed securely by Stripe.</p><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4A5560">When you place your order you’ll go to Stripe’s secure checkout page to enter your email, shipping address and card details. Have a discount code? You can add it there.</p></section>
 </form>
@@ -72,7 +68,9 @@ a{color:#7A5C14}a:hover{color:#5C4610}
   } catch (e) {}
   var $ = function (sel) { return document.querySelector(sel); };
   var money = function (n) { return "$" + n.toFixed(2); };
-  var shipping = function () { var r = $('input[name="ship"]:checked'); return r ? r.value : "std"; };
+  var INTL = ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SD", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW"];
+  var country = function () { return $("#co-country").value || "US"; };
+  var shipping = function () { return country() === "US" ? "std" : "intl"; };
 
   function render() {
     var sub = 0;
@@ -89,9 +87,10 @@ a{color:#7A5C14}a:hover{color:#5C4610}
     $("#co-total").textContent = money(sub + ship);
     $("#co-place").disabled = sub === 0;
     $("#co-place").style.opacity = sub === 0 ? "0.5" : "1";
-    document.querySelectorAll('input[name="ship"]').forEach(function (r) {
-      r.closest("label").style.border = r.checked ? "2px solid #14202B" : "1px solid #CFCBC2";
-    });
+    var intl = shipping() === "intl";
+    $("#co-ship-name").textContent = intl ? "International shipping" : "Standard shipping";
+    $("#co-ship-time").textContent = intl ? "4–7 business days" : "1–2 business days";
+    $("#co-ship-price").textContent = money(SHIP[shipping()]);
   }
 
   document.querySelectorAll("[data-inc],[data-dec]").forEach(function (b) {
@@ -101,9 +100,19 @@ a{color:#7A5C14}a:hover{color:#5C4610}
       render();
     });
   });
-  document.querySelectorAll('input[name="ship"]').forEach(function (r) {
-    r.addEventListener("change", render);
-  });
+  // Fill the country list (names in the visitor's language), US first.
+  (function () {
+    var sel = $("#co-country"), names;
+    try { names = new Intl.DisplayNames([navigator.language || "en", "en"], { type: "region" }); } catch (e) {}
+    INTL.map(function (c) { return [c, (names && names.of(c)) || c]; })
+      .sort(function (a, b) { return a[1].localeCompare(b[1]); })
+      .forEach(function (p) { var o = document.createElement("option"); o.value = p[0]; o.textContent = p[1]; sel.appendChild(o); });
+    try {
+      var guess = (navigator.language || "").split("-")[1];
+      if (guess && INTL.indexOf(guess.toUpperCase()) > -1) sel.value = guess.toUpperCase();
+    } catch (e) {}
+    sel.addEventListener("change", render);
+  })();
 
   var btn = $("#co-place"), err = $("#co-error");
   btn.addEventListener("click", function () {
@@ -113,7 +122,7 @@ a{color:#7A5C14}a:hover{color:#5C4610}
     fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ posterity: qty.posterity, epimens: qty.epimens, shipping: shipping() })
+      body: JSON.stringify({ posterity: qty.posterity, epimens: qty.epimens, country: country() })
     })
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {

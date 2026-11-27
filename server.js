@@ -79,7 +79,13 @@ app.post("/api/checkout", async (req, res) => {
     posterity: qty(body.posterity),
     epimens: qty(body.epimens),
   };
-  const ship = SHIPPING[body.shipping] ? body.shipping : "std";
+  // Shipping is set by the country the customer picks; Stripe's page then
+  // only accepts an address in that country, so the rate always matches.
+  const country = String(body.country || "US").toUpperCase();
+  const ship = country === "US" ? "std" : "intl";
+  if (ship === "intl" && !SHIPPING.intl.countries.includes(country)) {
+    return res.status(400).json({ error: "We can't ship to that country yet." });
+  }
 
   const origin =
     process.env.PUBLIC_URL ||
@@ -113,7 +119,7 @@ app.post("/api/checkout", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
-      shipping_address_collection: { allowed_countries: s.countries },
+      shipping_address_collection: { allowed_countries: [country] },
       shipping_options: [
         {
           shipping_rate_data: {
